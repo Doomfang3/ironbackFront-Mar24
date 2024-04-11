@@ -1,0 +1,19 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import { BrowserRouter } from 'react-router-dom'
+import { MantineProvider } from '@mantine/core'
+
+// core styles are required for all packages
+import '@mantine/core/styles.css'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <MantineProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </MantineProvider>
+  </React.StrictMode>
+)
