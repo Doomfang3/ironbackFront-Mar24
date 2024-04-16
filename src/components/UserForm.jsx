@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { MultiSelectCreatable } from './MultiSelect'
 import { Button } from '@mantine/core'
 
-const API_URL = 'http://localhost:4000'
-
 const UserForm = ({ user, isUpdate = false }) => {
   const [firstname, setFirstname] = useState(isUpdate ? user.firstname : '')
   const [dog, setDog] = useState(isUpdate ? user.dog : '')
@@ -21,11 +19,14 @@ const UserForm = ({ user, isUpdate = false }) => {
     }
 
     try {
-      const response = await fetch(`${API_URL}/users${isUpdate ? `/${user.id}` : ''}`, {
-        method: isUpdate ? 'PUT' : 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/users${isUpdate ? `/${user.id}` : ''}`,
+        {
+          method: isUpdate ? 'PUT' : 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        }
+      )
 
       if (response.ok) {
         const data = await response.json()

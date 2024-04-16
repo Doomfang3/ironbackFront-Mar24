@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Text, Title } from '@mantine/core'
 
-const API_URL = 'http://localhost:4000'
-
 const UsersPage = () => {
   const [users, setUsers] = useState([])
 
   const fetchAllUsers = async () => {
     try {
-      const response = await fetch(`${API_URL}/users`)
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users`)
       if (response.ok) {
         const usersData = await response.json()
         setUsers(usersData)

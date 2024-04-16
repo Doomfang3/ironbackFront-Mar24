@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 
-const API_URL = 'http://localhost:4000'
-
 const UserDetails = () => {
   const { userId } = useParams()
   const [user, setUser] = useState({})
@@ -10,7 +8,9 @@ const UserDetails = () => {
 
   const getUser = async () => {
     try {
-      const response = await fetch(`${API_URL}/users/${userId}?_embed=playSessions`)
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/users/${userId}?_embed=playSessions`
+      )
       if (response.ok) {
         const result = await response.json()
         setUser(result)
@@ -26,7 +26,7 @@ const UserDetails = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`${API_URL}/users/${userId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
         method: 'DELETE',
       })
       if (response.ok) {

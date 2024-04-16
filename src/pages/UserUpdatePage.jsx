@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import UserForm from '../components/UserForm'
 
-const API_URL = 'http://localhost:4000'
-
 const UserUpdatePage = () => {
   const { userId } = useParams()
 
@@ -11,7 +9,7 @@ const UserUpdatePage = () => {
 
   const getUser = async () => {
     try {
-      const response = await fetch(`${API_URL}/users/${userId}`)
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`)
       if (response.ok) {
         const userData = await response.json()
         setUser(userData)
